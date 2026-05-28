@@ -3,144 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🛡️ Bug Bounty AI PRO</title>
+  <title>Sterlingtech Studio | Bug Bounty AI PRO</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-glow { text-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
     .terminal { font-family: 'Courier New', monospace; }
     .glow { text-shadow: 0 0 15px rgb(59 130 246); }
   </style>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen">
-  <div class="max-w-7xl mx-auto p-6">
-    <!-- Navbar -->
-    <nav class="flex justify-between items-center mb-10 border-b border-gray-800 pb-6">
+
+  <!-- Navbar -->
+  <nav class="border-b border-gray-800 bg-gray-950/80 backdrop-blur-md fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-2xl">🛡️</div>
+        <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-2xl">⚡</div>
+        <h1 class="text-2xl font-bold">Sterlingtech Studio</h1>
+      </div>
+      
+      <div class="flex items-center gap-8 text-sm">
+        <button onclick="switchTab(0)" class="tab-btn active px-5 py-2 rounded-xl transition" id="tab0">🏠 Home</button>
+        <button onclick="switchTab(1)" class="tab-btn px-5 py-2 rounded-xl transition" id="tab1">🛡️ Bug Bounty AI</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB 1: HOMEPAGE -->
+  <div id="content0" class="tab-content">
+    <section class="min-h-screen flex items-center pt-24">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-3xl font-bold tracking-tight glow">Bug Bounty AI PRO</h1>
-          <p class="text-xs text-gray-500">Sterlingtech Studio</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-6 text-sm">
-        <a href="#" class="hover:text-blue-400 transition">Dashboard</a>
-        <a href="#" class="hover:text-blue-400 transition">Templates</a>
-        <a href="#" class="hover:text-blue-400 transition">Resources</a>
-        <button onclick="toggleDarkMode()" class="p-2 hover:bg-gray-800 rounded-lg transition">
-          <i class="fas fa-moon"></i>
-        </button>
-      </div>
-    </nav>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      <!-- Main Area -->
-      <div class="lg:col-span-8">
-        <!-- Hero Input -->
-        <div class="bg-gray-900 rounded-3xl p-8 border border-gray-800 shadow-2xl">
-          <h2 class="text-4xl font-bold mb-3">Analyze Any Vulnerability</h2>
-          <p class="text-gray-400 mb-8">Get AI-powered insights, severity, and bounty estimates instantly</p>
-
-          <div class="flex gap-3 mb-6">
-            <input type="text" id="vulnInput" 
-                   class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-blue-500 transition"
-                   placeholder="e.g. Stored XSS, SQL Injection, IDOR...">
-            <button onclick="analyzeVulnerability()" 
-                    class="bg-blue-600 hover:bg-blue-700 px-10 rounded-2xl font-semibold transition flex items-center gap-2">
-              <i class="fas fa-bolt"></i>
-              ANALYZE
+          <h2 class="text-6xl md:text-7xl font-bold leading-tight hero-glow">
+            Crafting Digital<br>Excellence with<br><span class="text-blue-500">AI & Code</span>
+          </h2>
+          <p class="mt-6 text-xl text-gray-400">
+            Web Design • AI Solutions • Bug Bounty Tools
+          </p>
+          <div class="mt-10 flex gap-4">
+            <button onclick="switchTab(1)" 
+                    class="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition flex items-center gap-3">
+              <i class="fas fa-bug"></i> Launch Bug Bounty AI
             </button>
           </div>
-
-          <!-- Quick Buttons -->
-          <div class="flex flex-wrap gap-2">
-            <button onclick="quickAnalyze('Stored XSS')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">Stored XSS</button>
-            <button onclick="quickAnalyze('SQL Injection')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">SQLi</button>
-            <button onclick="quickAnalyze('IDOR')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">IDOR</button>
-            <button onclick="quickAnalyze('SSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">SSRF</button>
-            <button onclick="quickAnalyze('CSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">CSRF</button>
-            <button onclick="quickAnalyze('RCE')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">RCE</button>
+        </div>
+        
+        <div class="hidden md:block">
+          <div class="bg-gray-900 border border-gray-700 rounded-3xl p-8 text-center">
+            <div class="text-8xl mb-6">🛡️</div>
+            <h3 class="text-3xl font-bold">Bug Bounty AI PRO</h3>
+            <p class="text-gray-400 mt-3">Instant vulnerability analysis & bounty estimation</p>
+            <button onclick="switchTab(1)" class="block mt-8 bg-blue-600 py-4 rounded-2xl font-medium hover:bg-blue-700 w-full transition">
+              Try It Now →
+            </button>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Analysis Result -->
-        <div id="result" class="hidden mt-8 bg-gray-900 rounded-3xl p-8 border border-gray-800">
-          <div class="flex justify-between items-start mb-6">
-            <div>
-              <h3 id="vulnTitle" class="text-3xl font-bold"></h3>
-              <div id="severity" class="inline-block px-4 py-1 rounded-full text-sm font-medium mt-3"></div>
+    <!-- Services -->
+    <section class="py-24 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Our Services</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-800 p-8 rounded-3xl hover:scale-105 transition">
+            <i class="fas fa-code text-4xl text-blue-500 mb-6"></i>
+            <h3 class="text-2xl font-semibold">Web Development</h3>
+            <p class="text-gray-400 mt-4">Modern, fast, responsive websites and applications.</p>
+          </div>
+          <div class="bg-gray-800 p-8 rounded-3xl hover:scale-105 transition">
+            <i class="fas fa-robot text-4xl text-purple-500 mb-6"></i>
+            <h3 class="text-2xl font-semibold">AI Solutions</h3>
+            <p class="text-gray-400 mt-4">Custom AI tools and intelligent automation.</p>
+          </div>
+          <div class="bg-gray-800 p-8 rounded-3xl hover:scale-105 transition">
+            <i class="fas fa-shield-alt text-4xl text-emerald-500 mb-6"></i>
+            <h3 class="text-2xl font-semibold">Bug Bounty Tools</h3>
+            <p class="text-gray-400 mt-4">Smart vulnerability analysis & reporting assistant.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-black py-16 border-t border-gray-800 text-center">
+      <p class="text-2xl font-bold">Sterlingtech Studio</p>
+      <p class="text-gray-500 mt-2">Built by Peter Sterling • Lagos, Nigeria</p>
+      <p class="text-xs text-gray-600 mt-12">© 2026 Sterlingtech Studio</p>
+    </footer>
+  </div>
+
+  <!-- TAB 2: BUG BOUNTY AI -->
+  <div id="content1" class="tab-content hidden">
+    <div class="max-w-7xl mx-auto p-6 pt-24">
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="text-4xl font-bold glow">🛡️ Bug Bounty AI PRO</h1>
+        <button onclick="switchTab(0)" class="text-blue-400 hover:text-blue-300">← Back to Home</button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Main AI Tool -->
+        <div class="lg:col-span-8">
+          <div class="bg-gray-900 rounded-3xl p-8 border border-gray-800">
+            <h2 class="text-3xl font-bold mb-2">Analyze Vulnerability</h2>
+            <p class="text-gray-400 mb-6">Get AI-powered severity, impact & bounty estimate</p>
+
+            <div class="flex gap-3 mb-6">
+              <input type="text" id="vulnInput" 
+                     class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500"
+                     placeholder="e.g. Stored XSS, SQL Injection, IDOR...">
+              <button onclick="analyzeVulnerability()" 
+                      class="bg-blue-600 hover:bg-blue-700 px-10 rounded-2xl font-semibold transition">
+                ANALYZE
+              </button>
             </div>
-            <div id="bounty" class="text-right"></div>
+
+            <div class="flex flex-wrap gap-2">
+              <button onclick="quickAnalyze('Stored XSS')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">Stored XSS</button>
+              <button onclick="quickAnalyze('SQL Injection')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">SQLi</button>
+              <button onclick="quickAnalyze('IDOR')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">IDOR</button>
+              <button onclick="quickAnalyze('SSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">SSRF</button>
+              <button onclick="quickAnalyze('CSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">CSRF</button>
+              <button onclick="quickAnalyze('RCE')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl">RCE</button>
+            </div>
           </div>
 
-          <div id="analysisText" class="terminal text-gray-300 leading-relaxed text-lg mb-8"></div>
+          <!-- Result -->
+          <div id="result" class="hidden mt-8 bg-gray-900 rounded-3xl p-8 border border-gray-800">
+            <div class="flex justify-between">
+              <div>
+                <h3 id="vulnTitle" class="text-3xl font-bold"></h3>
+                <div id="severity" class="inline-block mt-3"></div>
+              </div>
+              <div id="bounty" class="text-right"></div>
+            </div>
+            <div id="analysisText" class="terminal text-gray-300 leading-relaxed my-8 text-lg"></div>
 
-          <div class="grid grid-cols-2 gap-6">
-            <button onclick="copyReport()" 
-                    class="border border-gray-700 hover:border-gray-400 py-4 rounded-2xl transition flex items-center justify-center gap-2">
-              <i class="fas fa-copy"></i> Copy Report
-            </button>
-            <button onclick="downloadReport()" 
-                    class="bg-gradient-to-r from-green-500 to-emerald-600 py-4 rounded-2xl font-semibold transition">
-              📄 Download Full Report (PDF)
-            </button>
+            <div class="grid grid-cols-2 gap-4">
+              <button onclick="copyReport()" class="border border-gray-700 py-4 rounded-2xl hover:border-gray-400">📋 Copy Report</button>
+              <button onclick="downloadReport()" class="bg-emerald-600 py-4 rounded-2xl">📄 Download Report</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Sidebar -->
-      <div class="lg:col-span-4 space-y-6">
-        <!-- History -->
-        <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
-          <h3 class="font-semibold mb-4 flex items-center gap-2">
-            <i class="fas fa-history"></i> Analysis History
-          </h3>
-          <div id="history" class="space-y-3 text-sm"></div>
-        </div>
-
-        <!-- Tips -->
-        <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
-          <h3 class="font-semibold mb-4">Pro Tips</h3>
-          <ul class="space-y-4 text-sm text-gray-400">
-            <li class="flex gap-3"><span class="text-blue-500">•</span> Always include reproduction steps</li>
-            <li class="flex gap-3"><span class="text-blue-500">•</span> High quality reports = Higher bounties</li>
-            <li class="flex gap-3"><span class="text-blue-500">•</span> Test impact before reporting</li>
-          </ul>
+        <!-- Sidebar -->
+        <div class="lg:col-span-4 space-y-6">
+          <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+            <h3 class="font-semibold mb-4">Analysis History</h3>
+            <div id="history" class="space-y-3"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer class="text-center py-8 text-gray-500 text-sm border-t border-gray-800 mt-16">
-    Built with ❤️ by Sterlingtech Studio • Bug Bounty AI Assistant
-  </footer>
-
   <script>
-    // Tailwind Script
-    function initTailwind() {
-      // Already using CDN
+    // Tab Switching
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      document.getElementById(`content${tab}`).classList.remove('hidden');
+      
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active', 'bg-gray-800'));
+      document.getElementById(`tab${tab}`).classList.add('active', 'bg-gray-800');
     }
 
-    // Mock AI Database
+    // Bug Bounty AI Logic
     const knowledgeBase = {
-      "xss": { severity: "High", color: "orange", bounty: "$500 - $5,000", text: "Stored XSS allows attackers to inject malicious JavaScript that executes for other users. Critical if it affects admin panels." },
-      "sql": { severity: "Critical", color: "red", bounty: "$1,000 - $15,000", text: "SQL Injection can lead to full database compromise. Look for UNION-based or Blind SQLi for higher impact." },
-      "idor": { severity: "High", color: "orange", bounty: "$300 - $4,000", text: "Insecure Direct Object Reference - horizontal or vertical privilege escalation possible." },
-      "ssrf": { severity: "Critical", color: "red", bounty: "$800 - $12,000", text: "Server-Side Request Forgery. Can lead to internal network access or cloud metadata leakage." },
-      "csrf": { severity: "Medium", color: "yellow", bounty: "$100 - $2,000", text: "Cross-Site Request Forgery. Impact depends on the action performed (e.g. password change, fund transfer)." },
-      "rce": { severity: "Critical", color: "red", bounty: "$2,000 - $30,000+", text: "Remote Code Execution is one of the most dangerous vulnerabilities. Immediate high priority." }
+      "xss": { severity: "High", color: "orange", bounty: "$500 - $5,000", text: "Stored XSS allows attackers to inject malicious JavaScript..." },
+      "sql": { severity: "Critical", color: "red", bounty: "$1,000 - $15,000", text: "SQL Injection can lead to full database compromise." },
+      "idor": { severity: "High", color: "orange", bounty: "$300 - $4,000", text: "Insecure Direct Object Reference leading to privilege escalation." },
+      "ssrf": { severity: "Critical", color: "red", bounty: "$800 - $12,000", text: "Server-Side Request Forgery can expose internal systems." },
+      "csrf": { severity: "Medium", color: "yellow", bounty: "$100 - $2,000", text: "Cross-Site Request Forgery depends on the action performed." },
+      "rce": { severity: "Critical", color: "red", bounty: "$2,000 - $30,000+", text: "Remote Code Execution is extremely dangerous." }
     };
 
     function analyzeVulnerability() {
       const input = document.getElementById('vulnInput').value.trim().toLowerCase();
       if (!input) return;
 
-      let result = knowledgeBase[input] || 
+      let data = knowledgeBase[input] || 
         { severity: "Medium", color: "yellow", bounty: "$200 - $3,000", 
-          text: "This vulnerability requires further analysis. Provide more context (affected endpoint, impact observed) for better assessment." };
+          text: "This vulnerability needs more context for accurate assessment." };
 
-      showResult(input.toUpperCase(), result);
-      saveToHistory(input.toUpperCase(), result.severity);
+      showResult(input.toUpperCase(), data);
+      saveToHistory(input.toUpperCase(), data.severity);
     }
 
     function quickAnalyze(type) {
@@ -153,15 +199,12 @@
       resultDiv.classList.remove('hidden');
 
       document.getElementById('vulnTitle').textContent = title;
+      document.getElementById('severity').innerHTML = 
+        `<span class="px-5 py-2 rounded-full bg-\( {data.color}-500/20 text- \){data.color}-400">${data.severity}</span>`;
       
-      const severityEl = document.getElementById('severity');
-      severityEl.innerHTML = `<span class="px-4 py-1 rounded-full bg-\( {data.color}-500/20 text- \){data.color}-400">${data.severity}</span>`;
+      document.getElementById('bounty').innerHTML = 
+        `<p class="text-sm text-gray-500">Estimated Bounty</p><p class="text-3xl font-bold text-emerald-400">${data.bounty}</p>`;
       
-      document.getElementById('bounty').innerHTML = `
-        <p class="text-sm text-gray-500">Estimated Bounty</p>
-        <p class="text-3xl font-bold text-emerald-400">${data.bounty}</p>
-      `;
-
       document.getElementById('analysisText').textContent = data.text;
     }
 
@@ -176,48 +219,39 @@
     function renderHistory() {
       const container = document.getElementById('history');
       let history = JSON.parse(localStorage.getItem('bugHistory') || '[]');
-      
       if (history.length === 0) {
-        container.innerHTML = `<p class="text-gray-500 text-center py-4">No analysis yet</p>`;
+        container.innerHTML = `<p class="text-gray-500">No analyses yet</p>`;
         return;
       }
-
       container.innerHTML = history.map(item => `
-        <div class="flex justify-between items-center bg-gray-800 rounded-2xl p-4 hover:bg-gray-700 transition cursor-pointer"
-             onclick="loadFromHistory('${item.title}')">
-          <div>
-            <p class="font-medium">${item.title}</p>
-            <p class="text-xs text-gray-500">${item.time}</p>
-          </div>
-          <span class="text-xs px-3 py-1 bg-gray-700 rounded-full">${item.severity}</span>
+        <div class="bg-gray-800 p-4 rounded-2xl text-sm cursor-pointer hover:bg-gray-700" onclick="loadHistory('${item.title}')">
+          <p class="font-medium">${item.title}</p>
+          <p class="text-xs text-gray-500">${item.time} • ${item.severity}</p>
         </div>
       `).join('');
     }
 
-    function loadFromHistory(title) {
+    function loadHistory(title) {
       document.getElementById('vulnInput').value = title;
       analyzeVulnerability();
+      switchTab(1);
     }
 
     function copyReport() {
       const text = document.getElementById('analysisText').textContent;
       navigator.clipboard.writeText(text);
-      alert("✅ Report copied to clipboard!");
+      alert("✅ Report copied!");
     }
 
     function downloadReport() {
-      alert("📥 Report downloaded (demo mode).\n\nIn production, this would generate a proper PDF.");
-    }
-
-    function toggleDarkMode() {
-      // Already in dark mode by default
-      alert("Theme toggle coming soon!");
+      alert("📥 Report download started (Demo Mode)");
     }
 
     // Initialize
     window.onload = () => {
+      switchTab(0);
       renderHistory();
     };
   </script>
 </body>
-  </html>
+    </html>
