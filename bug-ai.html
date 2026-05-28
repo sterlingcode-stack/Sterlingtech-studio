@@ -1,32 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bug Bounty AI</title>
+<title>Bug Bounty AI Pro</title>
+
+<style>
+body{
+background:#0a0f1f;
+color:#00ff99;
+font-family:Arial;
+text-align:center;
+padding:20px;
+}
+
+h1{
+color:#00ffff;
+}
+
+input{
+width:85%;
+padding:12px;
+margin:10px;
+border-radius:8px;
+}
+
+button{
+padding:12px 25px;
+background:#00cc66;
+color:white;
+border:none;
+border-radius:8px;
+}
+
+#result{
+margin-top:20px;
+padding:20px;
+background:#111827;
+border-radius:12px;
+white-space:pre-wrap;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Bug Bounty AI Assistant</h1>
+<h1>🛡️ Bug Bounty AI PRO</h1>
 
-<p>Enter a bug type:</p>
+<p>Enter vulnerability type:</p>
 
-<input id="bug" placeholder="SQL Injection, XSS, CSRF">
+<input id="bug"
+placeholder="SQL Injection, XSS, CSRF, IDOR">
 
-<button onclick="analyze()">Analyze</button>
+<br>
 
-<p id="result"></p>
+<button onclick="analyze()">
+Analyze
+</button>
+
+<div id="result"></div>
 
 <script>
-function analyze() {
+
+function analyze(){
 
 let bug =
-document.getElementById("bug").value;
+document.getElementById("bug").value.toLowerCase();
 
-document.getElementById("result").innerText =
-"Analysis: " + bug +
-" | Check input validation, authentication, and secure coding practices.";
+let output="";
+
+if(bug.includes("sql")){
+
+output=
+"🔴 SQL Injection\n"+
+"Severity: High\n"+
+"Fix: Use prepared statements and sanitize inputs.";
 
 }
+
+else if(bug.includes("xss")){
+
+output=
+"🟠 XSS Vulnerability\n"+
+"Severity: Medium\n"+
+"Fix: Escape HTML and validate user data.";
+
+}
+
+else if(bug.includes("csrf")){
+
+output=
+"🟡 CSRF Attack Risk\n"+
+"Severity: Medium\n"+
+"Fix: Use CSRF tokens.";
+
+}
+
+else if(bug.includes("idor")){
+
+output=
+"🔵 IDOR Vulnerability\n"+
+"Severity: High\n"+
+"Fix: Enforce access control checks.";
+
+}
+
+else{
+
+output=
+"⚠️ Unknown Bug Type\n"+
+"Suggestion: Perform validation and secure coding review.";
+
+}
+
+document.getElementById("result")
+.innerText=output;
+
+}
+
 </script>
 
 </body>
