@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bug Fix AI</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0d1117;
+color:white;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+header{
+background:#161b22;
+padding:40px;
+}
+
+h1{
+color:#00ff99;
+}
+
+section{
+padding:30px;
+}
+
+.card{
+background:#161b22;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+
+button{
+background:#00ff99;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>Bug Fix AI</h1>
+<p>AI-powered website & application debugging solutions.</p>
+
+<button>Get Your Website Fixed</button>
+</header>
+
+<section>
+
+<div class="card">
+<h2>Our Services</h2>
+<p>Website Bug Fixing</p>
+<p>Frontend Debugging</p>
+<p>Backend Repairs</p>
+<p>API Error Resolution</p>
+<p>Responsive Design Fixes</p>
+</div>
+
+<div class="card">
+<h2>Why Choose Us?</h2>
+<p>Fast debugging.</p>
+<p>Reliable fixes.</p>
+<p>Modern AI-powered solutions.</p>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>Email: your@email.com</p>
+<p>GitHub: github.com/yourusername</p>
+</div>
+
+</section>
+
+</body>
+  </html>                  
