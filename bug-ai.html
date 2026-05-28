@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bug Bounty AI</title>
+</head>
+
+<body>
+
+<h1>Bug Bounty AI Assistant</h1>
+
+<p>Enter a bug type:</p>
+
+<input id="bug" placeholder="SQL Injection, XSS, CSRF">
+
+<button onclick="analyze()">Analyze</button>
+
+<p id="result"></p>
+
+<script>
+function analyze() {
+
+let bug =
+document.getElementById("bug").value;
+
+document.getElementById("result").innerText =
+"Analysis: " + bug +
+" | Check input validation, authentication, and secure coding practices.";
+
+}
+</script>
+
+</body>
+  </html>
