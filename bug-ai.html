@@ -1,122 +1,223 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark">
 <head>
-<title>Bug Bounty AI Pro</title>
-
-<style>
-body{
-background:#0a0f1f;
-color:#00ff99;
-font-family:Arial;
-text-align:center;
-padding:20px;
-}
-
-h1{
-color:#00ffff;
-}
-
-input{
-width:85%;
-padding:12px;
-margin:10px;
-border-radius:8px;
-}
-
-button{
-padding:12px 25px;
-background:#00cc66;
-color:white;
-border:none;
-border-radius:8px;
-}
-
-#result{
-margin-top:20px;
-padding:20px;
-background:#111827;
-border-radius:12px;
-white-space:pre-wrap;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛡️ Bug Bounty AI PRO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .terminal { font-family: 'Courier New', monospace; }
+    .glow { text-shadow: 0 0 15px rgb(59 130 246); }
+  </style>
 </head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+  <div class="max-w-7xl mx-auto p-6">
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center mb-10 border-b border-gray-800 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-2xl">🛡️</div>
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight glow">Bug Bounty AI PRO</h1>
+          <p class="text-xs text-gray-500">Sterlingtech Studio</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="#" class="hover:text-blue-400 transition">Dashboard</a>
+        <a href="#" class="hover:text-blue-400 transition">Templates</a>
+        <a href="#" class="hover:text-blue-400 transition">Resources</a>
+        <button onclick="toggleDarkMode()" class="p-2 hover:bg-gray-800 rounded-lg transition">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
 
-<body>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Main Area -->
+      <div class="lg:col-span-8">
+        <!-- Hero Input -->
+        <div class="bg-gray-900 rounded-3xl p-8 border border-gray-800 shadow-2xl">
+          <h2 class="text-4xl font-bold mb-3">Analyze Any Vulnerability</h2>
+          <p class="text-gray-400 mb-8">Get AI-powered insights, severity, and bounty estimates instantly</p>
 
-<h1>🛡️ Bug Bounty AI PRO</h1>
+          <div class="flex gap-3 mb-6">
+            <input type="text" id="vulnInput" 
+                   class="flex-1 bg-gray-950 border border-gray-700 rounded-2xl px-6 py-4 text-lg focus:outline-none focus:border-blue-500 transition"
+                   placeholder="e.g. Stored XSS, SQL Injection, IDOR...">
+            <button onclick="analyzeVulnerability()" 
+                    class="bg-blue-600 hover:bg-blue-700 px-10 rounded-2xl font-semibold transition flex items-center gap-2">
+              <i class="fas fa-bolt"></i>
+              ANALYZE
+            </button>
+          </div>
 
-<p>Enter vulnerability type:</p>
+          <!-- Quick Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <button onclick="quickAnalyze('Stored XSS')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">Stored XSS</button>
+            <button onclick="quickAnalyze('SQL Injection')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">SQLi</button>
+            <button onclick="quickAnalyze('IDOR')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">IDOR</button>
+            <button onclick="quickAnalyze('SSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">SSRF</button>
+            <button onclick="quickAnalyze('CSRF')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">CSRF</button>
+            <button onclick="quickAnalyze('RCE')" class="text-sm px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-xl transition">RCE</button>
+          </div>
+        </div>
 
-<input id="bug"
-placeholder="SQL Injection, XSS, CSRF, IDOR">
+        <!-- Analysis Result -->
+        <div id="result" class="hidden mt-8 bg-gray-900 rounded-3xl p-8 border border-gray-800">
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <h3 id="vulnTitle" class="text-3xl font-bold"></h3>
+              <div id="severity" class="inline-block px-4 py-1 rounded-full text-sm font-medium mt-3"></div>
+            </div>
+            <div id="bounty" class="text-right"></div>
+          </div>
 
-<br>
+          <div id="analysisText" class="terminal text-gray-300 leading-relaxed text-lg mb-8"></div>
 
-<button onclick="analyze()">
-Analyze
-</button>
+          <div class="grid grid-cols-2 gap-6">
+            <button onclick="copyReport()" 
+                    class="border border-gray-700 hover:border-gray-400 py-4 rounded-2xl transition flex items-center justify-center gap-2">
+              <i class="fas fa-copy"></i> Copy Report
+            </button>
+            <button onclick="downloadReport()" 
+                    class="bg-gradient-to-r from-green-500 to-emerald-600 py-4 rounded-2xl font-semibold transition">
+              📄 Download Full Report (PDF)
+            </button>
+          </div>
+        </div>
+      </div>
 
-<div id="result"></div>
+      <!-- Sidebar -->
+      <div class="lg:col-span-4 space-y-6">
+        <!-- History -->
+        <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+          <h3 class="font-semibold mb-4 flex items-center gap-2">
+            <i class="fas fa-history"></i> Analysis History
+          </h3>
+          <div id="history" class="space-y-3 text-sm"></div>
+        </div>
 
-<script>
+        <!-- Tips -->
+        <div class="bg-gray-900 rounded-3xl p-6 border border-gray-800">
+          <h3 class="font-semibold mb-4">Pro Tips</h3>
+          <ul class="space-y-4 text-sm text-gray-400">
+            <li class="flex gap-3"><span class="text-blue-500">•</span> Always include reproduction steps</li>
+            <li class="flex gap-3"><span class="text-blue-500">•</span> High quality reports = Higher bounties</li>
+            <li class="flex gap-3"><span class="text-blue-500">•</span> Test impact before reporting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-function analyze(){
+  <footer class="text-center py-8 text-gray-500 text-sm border-t border-gray-800 mt-16">
+    Built with ❤️ by Sterlingtech Studio • Bug Bounty AI Assistant
+  </footer>
 
-let bug =
-document.getElementById("bug").value.toLowerCase();
+  <script>
+    // Tailwind Script
+    function initTailwind() {
+      // Already using CDN
+    }
 
-let output="";
+    // Mock AI Database
+    const knowledgeBase = {
+      "xss": { severity: "High", color: "orange", bounty: "$500 - $5,000", text: "Stored XSS allows attackers to inject malicious JavaScript that executes for other users. Critical if it affects admin panels." },
+      "sql": { severity: "Critical", color: "red", bounty: "$1,000 - $15,000", text: "SQL Injection can lead to full database compromise. Look for UNION-based or Blind SQLi for higher impact." },
+      "idor": { severity: "High", color: "orange", bounty: "$300 - $4,000", text: "Insecure Direct Object Reference - horizontal or vertical privilege escalation possible." },
+      "ssrf": { severity: "Critical", color: "red", bounty: "$800 - $12,000", text: "Server-Side Request Forgery. Can lead to internal network access or cloud metadata leakage." },
+      "csrf": { severity: "Medium", color: "yellow", bounty: "$100 - $2,000", text: "Cross-Site Request Forgery. Impact depends on the action performed (e.g. password change, fund transfer)." },
+      "rce": { severity: "Critical", color: "red", bounty: "$2,000 - $30,000+", text: "Remote Code Execution is one of the most dangerous vulnerabilities. Immediate high priority." }
+    };
 
-if(bug.includes("sql")){
+    function analyzeVulnerability() {
+      const input = document.getElementById('vulnInput').value.trim().toLowerCase();
+      if (!input) return;
 
-output=
-"🔴 SQL Injection\n"+
-"Severity: High\n"+
-"Fix: Use prepared statements and sanitize inputs.";
+      let result = knowledgeBase[input] || 
+        { severity: "Medium", color: "yellow", bounty: "$200 - $3,000", 
+          text: "This vulnerability requires further analysis. Provide more context (affected endpoint, impact observed) for better assessment." };
 
-}
+      showResult(input.toUpperCase(), result);
+      saveToHistory(input.toUpperCase(), result.severity);
+    }
 
-else if(bug.includes("xss")){
+    function quickAnalyze(type) {
+      document.getElementById('vulnInput').value = type;
+      analyzeVulnerability();
+    }
 
-output=
-"🟠 XSS Vulnerability\n"+
-"Severity: Medium\n"+
-"Fix: Escape HTML and validate user data.";
+    function showResult(title, data) {
+      const resultDiv = document.getElementById('result');
+      resultDiv.classList.remove('hidden');
 
-}
+      document.getElementById('vulnTitle').textContent = title;
+      
+      const severityEl = document.getElementById('severity');
+      severityEl.innerHTML = `<span class="px-4 py-1 rounded-full bg-\( {data.color}-500/20 text- \){data.color}-400">${data.severity}</span>`;
+      
+      document.getElementById('bounty').innerHTML = `
+        <p class="text-sm text-gray-500">Estimated Bounty</p>
+        <p class="text-3xl font-bold text-emerald-400">${data.bounty}</p>
+      `;
 
-else if(bug.includes("csrf")){
+      document.getElementById('analysisText').textContent = data.text;
+    }
 
-output=
-"🟡 CSRF Attack Risk\n"+
-"Severity: Medium\n"+
-"Fix: Use CSRF tokens.";
+    function saveToHistory(title, severity) {
+      let history = JSON.parse(localStorage.getItem('bugHistory') || '[]');
+      history.unshift({ title, severity, time: new Date().toLocaleTimeString() });
+      if (history.length > 5) history.pop();
+      localStorage.setItem('bugHistory', JSON.stringify(history));
+      renderHistory();
+    }
 
-}
+    function renderHistory() {
+      const container = document.getElementById('history');
+      let history = JSON.parse(localStorage.getItem('bugHistory') || '[]');
+      
+      if (history.length === 0) {
+        container.innerHTML = `<p class="text-gray-500 text-center py-4">No analysis yet</p>`;
+        return;
+      }
 
-else if(bug.includes("idor")){
+      container.innerHTML = history.map(item => `
+        <div class="flex justify-between items-center bg-gray-800 rounded-2xl p-4 hover:bg-gray-700 transition cursor-pointer"
+             onclick="loadFromHistory('${item.title}')">
+          <div>
+            <p class="font-medium">${item.title}</p>
+            <p class="text-xs text-gray-500">${item.time}</p>
+          </div>
+          <span class="text-xs px-3 py-1 bg-gray-700 rounded-full">${item.severity}</span>
+        </div>
+      `).join('');
+    }
 
-output=
-"🔵 IDOR Vulnerability\n"+
-"Severity: High\n"+
-"Fix: Enforce access control checks.";
+    function loadFromHistory(title) {
+      document.getElementById('vulnInput').value = title;
+      analyzeVulnerability();
+    }
 
-}
+    function copyReport() {
+      const text = document.getElementById('analysisText').textContent;
+      navigator.clipboard.writeText(text);
+      alert("✅ Report copied to clipboard!");
+    }
 
-else{
+    function downloadReport() {
+      alert("📥 Report downloaded (demo mode).\n\nIn production, this would generate a proper PDF.");
+    }
 
-output=
-"⚠️ Unknown Bug Type\n"+
-"Suggestion: Perform validation and secure coding review.";
+    function toggleDarkMode() {
+      // Already in dark mode by default
+      alert("Theme toggle coming soon!");
+    }
 
-}
-
-document.getElementById("result")
-.innerText=output;
-
-}
-
-</script>
-
+    // Initialize
+    window.onload = () => {
+      renderHistory();
+    };
+  </script>
 </body>
   </html>
