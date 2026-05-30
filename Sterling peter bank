@@ -1,812 +1,324 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sterling Peter Bank - Your Financial Home</title>
+    <title>Sterling Peter Bank - Secure Digital Banking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/1920/1080') center/cover;
         }
-
-        :root {
-            --primary-color: #1e3c72;
-            --secondary-color: #2a5298;
-            --accent-color: #f39c12;
-            --success-color: #27ae60;
-            --danger-color: #e74c3c;
-            --warning-color: #f1c40f;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
-            --bg-light: #ecf0f1;
-            --bg-white: #ffffff;
-            --border-color: #bdc3c7;
+        .nav-link:hover {
+            color: #1e40af;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-        }
-
-        /* ============ TOP BAR ============ */
-        .top-bar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.7rem 2rem;
-            font-size: 0.9rem;
-        }
-
-        .top-bar-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar-left {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .top-bar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .top-bar a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .top-bar a:hover {
-            opacity: 0.8;
-        }
-
-        /* ============ HEADER & NAVIGATION ============ */
-        header {
-            background-color: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo:before {
-            content: "🏦";
-            font-size: 2rem;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        .btn-login {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: 2px solid var(--accent-color);
-            cursor: pointer;
-        }
-
-        .btn-login:hover {
-            background-color: transparent;
-            color: var(--accent-color);
-        }
-
-        /* ============ BUTTONS ============ */
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background-color: #e67e22;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
-            background-color: var(--success-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-success:hover {
-            background-color: #229954;
-        }
-
-        /* ============ ANIMATIONS ============ */
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* ============ HERO SECTION ============ */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: slideInDown 0.8s ease;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: slideInUp 0.8s ease;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeIn 1s ease;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: white;
-            padding: 1rem 2rem;
-            border: 2px solid white;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary-color);
-        }
-
-        /* ============ SECTIONS ============ */
-        section {
-            padding: 5rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ============ MODAL/LOGIN SECTION ============ */
-        .login-section {
-            background-color: var(--bg-white);
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .login-modal {
-            background-color: var(--bg-white);
-            margin: auto;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .close-modal {
-            color: var(--text-light);
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--danger-color);
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .login-modal h2 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .login-modal .btn-primary {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .toggle-form {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-light);
-        }
-
-        .toggle-form a {
-            color: var(--accent-color);
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        /* ============ DASHBOARD SECTION ============ */
-        .dashboard {
-            background-color: var(--bg-light);
-            display: none;
-        }
-
-        .dashboard-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .user-greeting {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .user-account {
-            opacity: 0.9;
-            font-size: 0.95rem;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
         .dashboard-card {
-            background-color: var(--bg-white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
             transition: all 0.3s;
-            border-top: 4px solid var(--accent-color);
         }
-
         .dashboard-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+
+    <!-- HEADER / NAV -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center text-white font-bold text-2xl">SP</div>
+                <div>
+                    <h1 class="text-2xl font-bold text-blue-800">Sterling Peter Bank</h1>
+                    <p class="text-xs text-gray-500 -mt-1">Nigeria • Secure Banking</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Accounts</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Transfers</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Loans</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Cards</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Invest</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-blue-700">Support</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleLoginModal()" 
+                        class="px-6 py-2.5 text-sm font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded-xl">
+                    Login / Register
+                </button>
+                <i class="fas fa-bell text-xl text-gray-600 cursor-pointer"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-bg h-screen flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-xl">
+                <h2 class="text-5xl font-bold leading-tight mb-6">
+                    Banking Made Simple, Secure &amp; Smart
+                </h2>
+                <p class="text-xl mb-8 text-gray-200">
+                    Manage your money anywhere, anytime with Sterling Peter Bank.
+                </p>
+                <div class="flex gap-4">
+                    <button onclick="document.getElementById('dashboard-section').scrollIntoView({behavior: 'smooth'})"
+                            class="px-8 py-4 bg-white text-blue-700 font-semibold rounded-2xl hover:bg-gray-100">
+                        View Demo Dashboard
+                    </button>
+                    <button onclick="toggleOnboardingModal()"
+                            class="px-8 py-4 border-2 border-white font-semibold rounded-2xl hover:bg-white/10">
+                        Open Account Now
+                    </button>
+                </div>
+                <p class="mt-6 text-sm flex items-center gap-2">
+                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">CBN Licensed</span>
+                    <span>• BVN &amp; NIN Secured</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOCK DASHBOARD -->
+    <section id="dashboard-section" class="max-w-7xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">Account Dashboard</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Balance Cards -->
+            <div class="bg-white rounded-3xl p-8 dashboard-card shadow">
+                <p class="text-gray-500 text-sm">Total Balance</p>
+                <p class="text-4xl font-bold text-green-600 mt-2">₦8,472,391.42</p>
+                <p class="text-sm text-green-500 mt-4 flex items-center gap-1">
+                    <i class="fas fa-arrow-up"></i> +4.8% this month
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-8 dashboard-card shadow">
+                <p class="text-gray-500 text-sm">Savings Goal</p>
+                <p class="text-4xl font-bold text-blue-600 mt-2">₦2,150,000</p>
+                <div class="h-2 bg-gray-200 rounded-full mt-6">
+                    <div class="h-2 w-3/4 bg-blue-600 rounded-full"></div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">75% of ₦2,850,000 target</p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-8 dashboard-card shadow">
+                <p class="text-gray-500 text-sm">Recent Activity</p>
+                <div class="mt-6 space-y-4">
+                    <div class="flex justify-between text-sm">
+                        <div>
+                            <p class="font-medium">Grocery - Shoprite</p>
+                            <p class="text-xs text-gray-500">Today • Debit</p>
+                        </div>
+                        <p class="text-red-500 font-medium">-₦18,450</p>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <div>
+                            <p class="font-medium">Salary Credit</p>
+                            <p class="text-xs text-gray-500">Yesterday</p>
+                        </div>
+                        <p class="text-green-500 font-medium">+₦450,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction History -->
+        <div class="mt-12 bg-white rounded-3xl p-8 shadow">
+            <div class="flex justify-between mb-6">
+                <h3 class="text-xl font-semibold">Transaction History</h3>
+                <button class="text-blue-600 text-sm font-medium">Download Statement (PDF) ↓</button>
+            </div>
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b text-left text-sm text-gray-500">
+                        <th class="pb-4">Date</th>
+                        <th class="pb-4">Description</th>
+                        <th class="pb-4">Type</th>
+                        <th class="pb-4 text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr class="border-b">
+                        <td class="py-4">May 29, 2026</td>
+                        <td>Transfer to John Doe</td>
+                        <td class="text-blue-600">P2P</td>
+                        <td class="text-right font-medium">-₦45,000</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="py-4">May 28, 2026</td>
+                        <td>MTN Airtime</td>
+                        <td>Bill Pay</td>
+                        <td class="text-right font-medium">-₦5,000</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4">May 27, 2026</td>
+                        <td>Interest on Savings</td>
+                        <td class="text-green-600">Credit</td>
+                        <td class="text-right font-medium text-green-600">+₦12,840</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FEATURES GRID -->
+    <section class="bg-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Powerful Banking Features</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-exchange-alt text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Transfers &amp; Payments</h3>
+                    <p class="text-gray-600">Local, international, bill pay, and real-time P2P transfers.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-credit-card text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Cards Management</h3>
+                    <p class="text-gray-600">Virtual &amp; physical cards • Freeze • Set limits • Instant control.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-hand-holding-usd text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Loans &amp; Credit</h3>
+                    <p class="text-gray-600">Instant loan applications, calculators &amp; approval tracking.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-chart-pie text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Personal Finance Tools</h3>
+                    <p class="text-gray-600">Budgeting, spending insights &amp; AI recommendations.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-piggy-bank text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Investments &amp; Savings</h3>
+                    <p class="text-gray-600">Fixed deposits, goal-based savings &amp; investment tracking.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl">
+                    <i class="fas fa-bell text-4xl text-blue-600 mb-6"></i>
+                    <h3 class="font-semibold text-xl mb-2">Smart Notifications</h3>
+                    <p class="text-gray-600">Real-time alerts via Email, SMS &amp; Push.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOAN CALCULATOR -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+        <div class="bg-white rounded-3xl p-10 shadow">
+            <h3 class="text-2xl font-bold mb-8">Loan Calculator</h3>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <label class="block text-sm mb-2">Loan Amount (₦)</label>
+                    <input type="number" id="loanAmount" value="500000" 
+                           class="w-full p-4 border rounded-2xl text-2xl font-medium focus:outline-none focus:border-blue-500">
+                    
+                    <label class="block text-sm mt-6 mb-2">Duration (Months)</label>
+                    <input type="range" id="loanMonths" min="6" max="60" value="24" 
+                           class="w-full accent-blue-600" oninput="calculateLoan()">
+                    <div class="flex justify-between text-xs text-gray-500 mt-1">
+                        <span>6</span><span id="monthsValue">24</span><span>60</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-3xl p-8">
+                    <p class="text-gray-500">Estimated Monthly Payment</p>
+                    <p id="monthlyPay" class="text-5xl font-bold text-blue-700 mt-3">₦24,850</p>
+                    <p class="text-sm text-gray-500 mt-8">Total Interest: <span id="totalInterest" class="font-medium">₦96,400</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 text-white mb-6">
+                    <div class="w-9 h-9 bg-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold">SP</div>
+                    <span class="font-bold text-2xl">Sterling Peter Bank</span>
+                </div>
+                <p class="text-sm">Your trusted digital bank in Nigeria.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Products</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>Current Account</li>
+                    <li>Savings Account</li>
+                    <li>Loans</li>
+                    <li>Cards</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>About Us</li>
+                    <li>Careers</li>
+                    <li>Contact</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Security</h4>
+                <p class="text-xs">128-bit SSL • Biometric Login • AI Fraud Detection</p>
+                <p class="mt-6 text-xs">CBN Licensed • Member of NDIC</p>
+            </div>
+        </div>
+        <div class="text-center text-xs mt-12 border-t border-gray-800 pt-8">
+            &copy; 2026 Sterling Peter Bank. Demo Website Only. Not a real financial institution.
+        </div>
+    </footer>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
+        <div class="bg-white rounded-3xl p-10 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold mb-6">Welcome Back</h3>
+            <input type="text" placeholder="Email or Phone" class="w-full p-4 border rounded-2xl mb-4">
+            <input type="password" placeholder="Password / PIN" class="w-full p-4 border rounded-2xl mb-6">
+            <button class="w-full py-4 bg-blue-700 text-white font-semibold rounded-2xl">Sign In Securely</button>
+            <p class="text-center text-sm mt-6 text-gray-500">Demo Mode • No real login required</p>
+            <button onclick="toggleLoginModal()" class="mt-6 w-full py-3 text-gray-500">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleLoginModal() {
+            document.getElementById('loginModal').classList.toggle('hidden');
         }
 
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        function toggleOnboardingModal() {
+            alert("Digital Onboarding Demo:\n\n1. Enter BVN & NIN\n2. Upload ID & Photo\n3. Liveness Check\n4. Account Created in 5 minutes!");
         }
 
-        .card-title {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        function calculateLoan() {
+            const amount = parseFloat(document.getElementById('loanAmount').value) || 500000;
+            const months = parseFloat(document.getElementById('loanMonths').value);
+            document.getElementById('monthsValue').textContent = months;
+            
+            // Simple calculation
+            const rate = 0.015; // 1.5% monthly demo rate
+            const monthly = (amount * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+            const totalInterest = (monthly * months) - amount;
+            
+            document.getElementById('monthlyPay').textContent = '₦' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            document.getElementById('totalInterest').textContent = '₦' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        .card-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
+        // Initialize loan calculator
+        window.onload = calculateLoan;
 
-        .account-balance {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
+        // Tailwind script already loaded
+    </script>
+</body>
+</html>                                                  border-top: 4px solid var(--accent-color);
+        
 
-        .balance-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
+                               
 
-        .balance-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        /* ============ TRANSACTION SECTIONS ============ */
-        .transaction-section {
-            background-color: var(--bg-white);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            display: none;
-        }
-
-        .transaction-section.active {
-            display: block;
-        }
-
-        .transaction-title {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .transaction-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-row.full {
-            grid-template-columns: 1fr;
-        }
-
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1.5rem;
-            display: none;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideInUp 0.5s ease;
-        }
-
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1.5rem;
-            display: none;
-            text-align: center;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: slideInUp 0.5s ease;
-        }
-
-        /* ============ TRANSACTION HISTORY ============ */
-        .transaction-history {
-            margin-top: 3rem;
-        }
-
-        .history-title {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .transaction-list {
-            max-width: 700px;
-        }
-
-        .transaction-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--bg-light);
-            margin-bottom: 0.5rem;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .transaction-item:hover {
-            background-color: #d5dbf0;
-        }
-
-        .transaction-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .transaction-icon {
-            font-size: 1.5rem;
-        }
-
-        .transaction-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .transaction-type {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .transaction-date {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .transaction-amount {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .amount-positive {
-            color: var(--success-color);
-        }
-
-        .amount-negative {
-            color: var(--danger-color);
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn-primary,
-            .btn-secondary,
-            .btn-outline {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .top-bar-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .top-bar-left {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .login-modal {
-                width: 95%;
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .hero {
-                padding: 3rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .dashboard-card {
-                text-align: center;
-            }
-
-            .transaction-item {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .balance-amount {
-                font-size: 2rem;
-            }
-        }
-
-        /* ============ FEATURES SECTION ============ */
-        .features {
-            background-color: var(--bg-white);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-box {
-            background-color: var(--bg-light);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-box h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .feature-box p {
-            color: var(--text-light);
-        }
-
-        /* ============ FOOTER ============ */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 2rem 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-section h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            opacity: 0.8;
-        }
-
-        .logout-btn {
-            background-color: var(--danger-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .logout-b
+                        
